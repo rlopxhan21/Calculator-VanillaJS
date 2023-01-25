@@ -88,10 +88,67 @@ allClear.addEventListener("click", (event) => {
   display1 = "";
   display2 = "";
   result = "";
+  haveDot = false;
   tempResultElm.innerText = "";
 });
 
 clear.addEventListener("click", (event) => {
   display2Elm.innerHTML = "";
   display2 = "";
+  haveDot = false;
 });
+
+window.addEventListener("keydown", (event) => {
+  console.log(event.key);
+  if (
+    event.key === "0" ||
+    event.key === "1" ||
+    event.key === "2" ||
+    event.key === "3" ||
+    event.key === "4" ||
+    event.key === "5" ||
+    event.key === "6" ||
+    event.key === "7" ||
+    event.key === "8" ||
+    event.key === "9" ||
+    event.key === "."
+  ) {
+    clickNumElm(event.key);
+  } else if (
+    event.key === "+" ||
+    event.key === "-" ||
+    event.key === "/" ||
+    event.key === "%"
+  ) {
+    clickOptElm(event.key);
+  } else if (event.key === "*") {
+    clickOptElm("X");
+  } else if (event.key === "Enter") {
+    if (!display1 || !display2) {
+      return;
+    }
+
+    mathOperation();
+    clearVar();
+    display2Elm.innerText = result;
+    tempResultElm.innerText = "";
+    display1 = "";
+    display2 = result;
+  }
+});
+
+const clickNumElm = (key) => {
+  numbers.forEach((btn) => {
+    if (btn.innerText === key) {
+      btn.click();
+    }
+  });
+};
+
+const clickOptElm = (key) => {
+  operations.forEach((btn) => {
+    if (btn.innerText === key) {
+      btn.click();
+    }
+  });
+};
