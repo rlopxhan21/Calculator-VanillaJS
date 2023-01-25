@@ -99,7 +99,6 @@ clear.addEventListener("click", (event) => {
 });
 
 window.addEventListener("keydown", (event) => {
-  console.log(event.key);
   if (
     event.key === "0" ||
     event.key === "1" ||
@@ -123,17 +122,12 @@ window.addEventListener("keydown", (event) => {
     clickOptElm(event.key);
   } else if (event.key === "*") {
     clickOptElm("X");
-  } else if (event.key === "Enter") {
-    if (!display1 || !display2) {
-      return;
-    }
-
-    mathOperation();
-    clearVar();
-    display2Elm.innerText = result;
-    tempResultElm.innerText = "";
-    display1 = "";
-    display2 = result;
+  } else if (event.key === "Enter" || event.key === "=") {
+    equal.click();
+  } else if (event.key === "Escape") {
+    allClear.click();
+  } else if (event.key === "Backspace") {
+    clickBack();
   }
 });
 
@@ -151,4 +145,11 @@ const clickOptElm = (key) => {
       btn.click();
     }
   });
+};
+
+const clickBack = () => {
+  if (display2Elm.innerText !== "0.00") {
+    display2 = display2.toString().slice(0, -1);
+    display2Elm.innerText = display2;
+  }
 };
