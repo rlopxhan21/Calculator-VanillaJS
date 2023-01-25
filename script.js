@@ -81,3 +81,17 @@ equal.addEventListener("click", (event) => {
   display1 = "";
   display2 = result;
 });
+
+allClear.addEventListener("click", (event) => {
+  display1Elm.innerText = "0";
+  display2Elm.innerText = "0.00";
+  display1 = "";
+  display2 = "";
+  result = "";
+  tempResultElm.innerText = "";
+});
+
+clear.addEventListener("click", (event) => {
+  display2Elm.innerHTML = "";
+  display2 = "";
+});
